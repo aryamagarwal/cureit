@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatbotLogo from "../../assets/cai.jpg";
 import CureitLogo from "../../assets/CureitLogo";
 import { Cross1Icon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
-import { Button, TextField } from "@radix-ui/themes";
+import { Button, Spinner, TextField } from "@radix-ui/themes";
+import useChatBot from "../../hooks/useChatBot";
 function ChatBot() {
   const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [message, setMessage] = useState(null);
+  const { isLoading, isFetching, data, error, status, refetch } =
+    useChatBot(message);
+  console.log(data);
 
-  const [chatbotMessages, setChatbotMessages] = useState([
+  const [chatbotMessages2, setChatbotMessages2] = useState([
     {
       message: "Hello, I am CureIt AI ChatBot. How can I help you today?",
       type: "bot",
@@ -49,8 +54,22 @@ function ChatBot() {
       message: "I'm glad you think so!",
       type: "bot",
     },
-    
   ]);
+  const [chatbotMessages, setChatbotMessages] = useState([
+    {
+      type: "bot",
+      message: "Hello, I'm CureIt AI ChatBot. How can I help you today?",
+    },
+  ]);
+
+  useEffect(() => {
+    if (data) {
+      setChatbotMessages([
+        ...chatbotMessages,
+        { type: "bot", message: data.answer },
+      ]);
+    }
+  }, [data]);
 
   return (
     <div className="absolute bottom-0 left-0 z-50 w-full border-red-600 p-4 font-noto text-sm font-medium">
@@ -110,12 +129,29 @@ function ChatBot() {
                     </div>
                   ),
                 )}
+                {isFetching && (
+                  <div className="self-start rounded-md border bg-gray-100 px-3 py-2">
+                    <Spinner />
+                  </div>
+                )}
               </div>
 
               <div className="flex h-12 w-full items-center gap-x-2 border-red-600 p-2">
                 <TextField.Root
                   className="w-full"
                   placeholder="Talk with CureIt AI ChatBot..."
+                  value={message || ""}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setChatbotMessages([
+                        ...chatbotMessages,
+                        { type: "user", message: message },
+                      ]);
+                      setMessage(null);
+                      refetch();
+                    }
+                  }}
                 >
                   <TextField.Slot></TextField.Slot>
                 </TextField.Root>
@@ -124,6 +160,14 @@ function ChatBot() {
                   radius=""
                   color="iris"
                   variant=""
+                  onClick={() => {
+                    setChatbotMessages([
+                      ...chatbotMessages,
+                      { type: "user", message: message },
+                    ]);
+                    setMessage(null);
+                    refetch();
+                  }}
                 >
                   <DoubleArrowRightIcon className="h-4 w-4" />
                 </Button>

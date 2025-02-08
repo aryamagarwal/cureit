@@ -593,6 +593,19 @@ export async function updateUserProfilePicture(userId, accessToken, formData) {
   return data;
 }
 
+export async function chatBot(message) {
+  const response = await fetch(
+    `https://hackofiesta-1.onrender.com/faq/?query="${message}"`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch chatbot response");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
 export async function getDoctorProfileDetails(userId, accessToken) {
   // console.log(accessToken);
   console.log("in api:", userId);
