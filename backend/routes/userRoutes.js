@@ -487,4 +487,62 @@ router.get("/getRole/:userId", verifyToken, async (req, res) => {
   }
 });
 
+router.post("/sendResetPasswordEmail", async (req, res) => {
+  // console.log("hhhhhh", req.params);
+  const { email } = req.body;
+  console.log(email);
+  console.log(req.body);
+  console.log("in updatePasswordEmail", email);
+
+  if (!email) {
+    console.log(" email not found");
+    return "Email not found";
+  }
+  try {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:5173/user/resetPassword",
+    });
+
+    if (error) {
+      console.log(error);
+      // console.log(data);
+      throw error;
+    }
+    // console.log(data);
+    return res.json({ data });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/updatePassword", verifyToken, async (req, res) => {
+  // console.log("hhhhhh", req.params);
+  const { new_password } = req.body;
+  const password = new_password;
+  console.log("22222222222222222222222222222222", password);
+  console.log(req.body);
+  console.log("in updatePassword", password);
+
+  if (!password) {
+    console.log("password cannot be null");
+    return "password cannot be null";
+  }
+  try {
+    const { data, error } = await supabase.auth.updateUser({
+      password: password,
+    });
+
+    if (error) {
+      console.log(error);
+      // console.log(data);
+      throw error;
+    }
+    // console.log(data);
+    return res.json({ data });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+    return { error: error.message };
+  }
+});
+
 module.exports = router;

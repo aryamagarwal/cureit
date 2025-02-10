@@ -11,7 +11,10 @@ import BookAppointment from "./pages/BookAppointment";
 import AccountVerification from "./pages/AccountVerification";
 import AccountVerified from "./pages/AccountVerified";
 import Dashboard from "./pages/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword";
 import UserDashboard from "./pages/UserDashboard.jsx";
+import ResetPasswordEmailSent from "./pages/ResetPasswordEmailSent";
+import ResetPassword from "./pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,21 @@ const router = createBrowserRouter([
       {
         path: "/user/dashboard",
         element: <Dashboard />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/user/resetPassword",
+        element: <ForgotPassword />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/user/resetPasswordEmailSent",
+        element: <ResetPasswordEmailSent />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "user/resetPassEnterEmail",
+        element: <ResetPassword />,
         errorElement: <ErrorPage />,
       },
     ],

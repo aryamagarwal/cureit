@@ -102,6 +102,12 @@ function LoginPage() {
         >
           Don't have an account? Sign Up
         </p>
+        <p
+          className="w-fit cursor-pointer select-none border-b border-white text-indigo-700 transition-all duration-200 hover:border-b hover:border-indigo-700"
+          onClick={() => navigate("/user/resetPassEnterEmail")}
+        >
+          Forgot Password?
+        </p>
       </div>
     </div>
   );
