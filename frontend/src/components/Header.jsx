@@ -118,7 +118,7 @@ function Header() {
         className="my-auto w-16 cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <CureitLogo fillColor={theme === "dark" ? "#ffffff" : "#000000"} />
+        <CureitLogo fillColor={"#000000"} />
       </div>
 
       <div className="mx-3 my-auto flex items-center justify-center gap-x-5">

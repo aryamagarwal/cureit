@@ -13,7 +13,7 @@ function AppLayout() {
 
   return (
     <ReactLenis root options={{ lerp: 0.15 }}>
-      <Theme appearance={theme}>
+      <Theme appearance={"light"}>
         <div className="">
           <Header />
           <main className="layout relative flex flex-col font-inter">
