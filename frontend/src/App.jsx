@@ -18,6 +18,9 @@ import ResetPassword from "./pages/ResetPassword";
 import { ToastContainer } from "react-toastify";
 import { useCureitContext } from "./utils/ContextProvider";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import SingleFeaturePageChatbot from "./pages/SingleFeaturePageChatbot";
+import SingleFeaturePageMedSpecRec from "./pages/SingleFeaturePageMedSpecRec";
+import SingleFeaturePageFeedback from "./pages/SingleFeaturePageFeedback";
 
 const router = createBrowserRouter(
   [
@@ -95,6 +98,21 @@ const router = createBrowserRouter(
         {
           path: "user/resetPassEnterEmail",
           element: <ResetPassword />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/featureAIChatbot",
+          element: <SingleFeaturePageChatbot />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/featureAIRecommendation",
+          element: <SingleFeaturePageMedSpecRec />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/featureAIFeedback",
+          element: <SingleFeaturePageFeedback />,
           errorElement: <ErrorPage />,
         },
       ],

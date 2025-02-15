@@ -134,12 +134,12 @@ function Header() {
             </Button>
           </Tooltip>
           <Separator orientation="vertical" />
-          <Tooltip content="Notifications" side="bottom">
+          {/* <Tooltip content="Notifications" side="bottom">
             <Button color="iris" size={"1"} variant="ghost">
               <BellIcon />
             </Button>
-          </Tooltip>
-          <Separator orientation="vertical" />
+          </Tooltip> */}
+          {/* <Separator orientation="vertical" /> */}
         </div>
         {!tokenString ? (
           <Button

@@ -34,12 +34,12 @@ function BookAppointment() {
   // patientId = user.currentUser.id;
   // }
   const [formData, setFormData] = useState({
-    fullName: "Rakesh Mishra",
+    fullName: "",
     address: "",
     healthIssue:
-      "My gums feel puffy and tender, especially around certain teeth. They look red and swollen, and sometimes they even bleed a little when I brush or floss. It feels sore, and chewing can be uncomfortable.",
-    age: "23",
-    gender: "Male",
+      "",
+    age: "",
+    gender: "",
     selectedDoctor: null,
     selectedDate: null,
   });

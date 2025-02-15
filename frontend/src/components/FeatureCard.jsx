@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default function Card1({ title, text, link, linkName }) {
   return (
-    <div className="card bg-[#ffffff90] z-10  flex select-none items-center justify-start space-x-7 rounded-lg border-2 border-[#dee8ef] px-2 py-2 md:px-5 md:py-3 transition-all duration-150 ease-in-out hover:border-[#55a6f6] hover:bg-[#ebf5fe50] backdrop-blur-md"
-    >
+    <div className="card z-10 flex select-none items-center justify-start space-x-7 rounded-lg border-2 border-[#dee8ef] bg-[#ffffff90] px-2 py-2 backdrop-blur-md transition-all duration-150 ease-in-out hover:border-[#55a6f6] hover:bg-[#ebf5fe50] md:px-5 md:py-3">
       <div className="left">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,16 +20,24 @@ export default function Card1({ title, text, link, linkName }) {
         </svg>
       </div>
       <div className="right max-w-lg space-y-1 text-left">
-        <div className="title text-sm lg:text-base font-semibold text-[#131b20]">
+        <div className="title text-sm font-semibold text-[#131b20] lg:text-base">
           {title}
         </div>
         <div className="body text-xs text-[#4c5967] md:text-sm">{text}</div>
-        <a
+        {/* <a
           href={link}
-          className="body md:text-base text-xs font-semibold text-[#0959aa]"
+          target="_blank"
+          rel="noreferrer"
+          className="body text-xs font-semibold text-[#0959aa] md:text-base"
         >
           {linkName}
-        </a>
+        </a> */}
+        <Link
+          to={link}
+          className="body text-xs font-semibold text-[#0959aa] md:text-base"
+        >
+          {linkName}
+        </Link>
       </div>
     </div>
   );
